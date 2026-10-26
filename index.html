@@ -133,13 +133,27 @@ display:flex;
 flex-wrap:wrap;
 gap:15px;
 }
+.project-details{
+    display:none;
+    margin-top:10px;
+    color:#ccc;
+    line-height:1.5;
+}
+
+.card.active .project-details{
+    display:block;
+}  
 
 .skill{
 background:#E50914;
 padding:10px 20px;
 border-radius:20px;
 }
-
+.cert{
+background:#E50914;
+padding:10px 20px;
+border-radius:20px;
+}
 footer{
 text-align:center;
 padding:30px;
@@ -316,6 +330,26 @@ Email: balameenabk@protonmail.com
 </p>
 
 </footer>
+<script>
 
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+
+    card.addEventListener('click', () => {
+
+        cards.forEach(c => {
+            if(c !== card){
+                c.classList.remove('active');
+            }
+        });
+
+        card.classList.toggle('active');
+
+    });
+
+});
+
+</script>
 </body>
 </html>
