@@ -98,9 +98,19 @@ overflow:hidden;
 transition:.3s;
 }
 
-.card:hover{
-transform:scale(1.05);
-cursor:pointer;
+.card{
+    background:#222;
+    min-width:320px;
+    border-radius:8px;
+    overflow:hidden;
+    transition:all 0.3s ease;
+    cursor:pointer;
+}
+
+.card.active{
+    transform:scale(1.1);
+    box-shadow:0 0 20px rgba(229,9,20,0.8);
+    border:2px solid #E50914;
 }
 
 .card img{
@@ -187,6 +197,10 @@ Explore Projects
 Database design using PK, FK,
 constraints, triggers and relationships.
 </p>
+<div class="project-details">
+            Created tables using primary keys,
+            foreign keys, triggers and data validation.
+        </div>
 </div>
 
 </div>
@@ -200,6 +214,9 @@ constraints, triggers and relationships.
 Business reporting using SQL views
 and aggregations.
 </p>
+  <div class="project-details">
+            Displayed Employee hierarchy using self join.
+        </div>
 </div>
 </div>
 
@@ -211,6 +228,9 @@ and aggregations.
 <p>
 Error Handling - User defined exceptions using Diagnostics and SQLstate
 </p>
+<div class="project-details">
+            Created a stored procedure to capture errors involving parameter binding,null and duplicate data.
+        </div>
 </div>
 </div>
 
@@ -223,6 +243,9 @@ Error Handling - User defined exceptions using Diagnostics and SQLstate
 Reusable and parameterized
 database logic.
 </p>
+  div class="project-details">
+            Obtained data about customer orders based on country and payments.
+        </div>
 </div>
 </div>
 
@@ -256,7 +279,7 @@ Tools: JIRA, SharePoint, Visio, SQL, PowerBI, Lexis Nexis, Flexcube, MS Office S
 
 <section class="section">
 
-<section class="section" id="Certifications & Accomplishments">
+<section class="section" id="Certifications">
 
 <h2>Certifications & Accomplishments</h2>
 <div class="Certs">
