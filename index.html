@@ -46,7 +46,7 @@ margin-left:20px;
 height:100vh;
 background:
 linear-gradient(to top, #141414 10%, transparent 60%),
-url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600') center/cover;
+url('https://images.hdqwalls.com/download/blade-runner-2049-movie-artwork-hd-cw-2560x1440.jpg') center/cover;
 display:flex;
 align-items:center;
 padding-left:60px;
@@ -76,10 +76,6 @@ font-weight:bold;
 }
     .card-content p{
     margin-bottom:15px;
-}
-.btn1{
-    display:inline-block;
-    margin-top:10px;
 }
 .section{
 padding:50px;
@@ -209,6 +205,7 @@ Explore Projects
 <div class="project-row">
 
 <div class="card">
+    <a href="Triggers.png" target="_blank">
 <img src="Triggers.png">
 
 <div class="card-content">
@@ -226,6 +223,7 @@ constraints, triggers and relationships.
 </div>
 
 <div class="card">
+    <a href="Self join.png" target="_blank">
 <img src="Self join.png">
 
 <div class="card-content">
@@ -241,6 +239,7 @@ and aggregations.
 </div>
 
 <div class="card">
+    <a href="Parameter bindng error.png" target="_blank">
 <img src="Parameter bindng error.png">
 
 <div class="card-content">
@@ -255,6 +254,7 @@ Error Handling - User defined exceptions using Diagnostics and SQLstate
 </div>
 
 <div class="card">
+    <a href="Stored.png" target="_blank">
 <img src="Stored.png">
 
 <div class="card-content">
@@ -281,7 +281,7 @@ database logic.
 Contains all the queries pertaining to customer order management, employee hierarchy projects
 </p>
 
-<div> <a href="SQL.docx" class = btn1
+<div> <a href="SQL.docx" class = btn
 target="_blank">
 
     View Code
@@ -348,30 +348,10 @@ and projects.
 
 <p>
 SQL Developer Portfolio
-Email: balameenabk@protonmail.com
+<div> Email: balameenabk@protonmail.com </div>
 </p>
 
 </footer>
-<script>
 
-const cards = document.querySelectorAll('.card');
-
-cards.forEach(card => {
-
-    card.addEventListener('click', () => {
-
-        cards.forEach(c => {
-            if(c !== card){
-                c.classList.remove('active');
-            }
-        });
-
-        card.classList.toggle('active');
-
-    });
-
-});
-
-</script>
 </body>
 </html>
