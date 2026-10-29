@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loan Onboarding Process Improvement | BA Portfolio</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#141414;
+    color:white;
+    line-height:1.7;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    width:100%;
+    background:rgba(0,0,0,0.9);
+    padding:20px 60px;
+    z-index:1000;
+}
+
+.logo{
+    color:#e50914;
+    font-size:32px;
+    font-weight:bold;
+}
+
+/* HERO */
+
+.hero{
+    height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,.7),
+    rgba(20,20,20,1)),
+    url('images/loan-banner.jpg');
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:800px;
+    margin-left:60px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:15px;
+}
+
+.subtitle{
+    color:#e50914;
+    font-size:1.3rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:1.1rem;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:12px 24px;
+    background:#e50914;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    margin-right:10px;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#ff1f1f;
+}
+
+.btn-secondary{
+    background:white;
+    color:black;
+}
+
+/* SECTION */
+
+.section{
+    padding:80px 8%;
+}
+
+.section h2{
+    color:#e50914;
+    margin-bottom:25px;
+    font-size:2.2rem;
+}
+
+.section p{
+    margin-bottom:20px;
+}
+
+/* CARD */
+
+.card{
+    background:#1f1f1f;
+    padding:25px;
+    border-radius:10px;
+    margin-top:20px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:scale(1.02);
+}
+
+/* PROCESS IMAGES */
+
+.process-img{
+    width:100%;
+    max-width:1000px;
+    border-radius:10px;
+    display:block;
+    margin-top:25px;
+    margin-bottom:25px;
+}
+
+/* TABLES */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+    overflow:hidden;
+}
+
+th{
+    background:#e50914;
+    color:white;
+    padding:12px;
+    text-align:left;
+}
+
+td{
+    border:1px solid #333;
+    padding:12px;
+}
+
+tr:nth-child(even){
+    background:#1c1c1c;
+}
+
+/* USER STORIES */
+
+.story{
+    background:#1c1c1c;
+    padding:25px;
+    margin-bottom:20px;
+    border-left:4px solid #e50914;
+    border-radius:8px;
+}
+
+.story h3{
+    color:#e50914;
+    margin-bottom:10px;
+}
+
+/* METRICS */
+
+.metrics{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.metric{
+    flex:1;
+    min-width:220px;
+    background:#1f1f1f;
+    padding:30px;
+    text-align:center;
+    border-top:5px solid #e50914;
+    border-radius:10px;
+}
+
+.metric h3{
+    color:#e50914;
+    font-size:2rem;
+}
+
+ul{
+    margin-left:25px;
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    color:#aaa;
+}
+/* ==========================
+   TABLETS
+========================== */
+
+@media (max-width: 1024px){
+
+    nav{
+        padding:15px 30px;
+    }
+
+    .hero-content{
+        margin-left:40px;
+        margin-right:40px;
+    }
+
+    .hero h1{
+        font-size:3rem;
+    }
+
+    .section{
+        padding:60px 5%;
+    }
+
+    .metrics{
+        justify-content:center;
+    }
+
+    .metric{
+        min-width:280px;
+    }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media (max-width: 768px){
+
+    nav{
+        padding:15px 20px;
+        text-align:center;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .hero{
+        height:auto;
+        min-height:100vh;
+        text-align:center;
+    }
+
+    .hero-content{
+        margin:120px 20px 40px;
+        max-width:100%;
+    }
+
+    .hero h1{
+        font-size:2.3rem;
+        line-height:1.2;
+    }
+
+    .subtitle{
+        font-size:1rem;
+    }
+
+    .hero p{
+        font-size:1rem;
+    }
+
+    .btn{
+        display:block;
+        width:100%;
+        margin-bottom:15px;
+        margin-right:0;
+        text-align:center;
+    }
+
+    .section{
+        padding:50px 20px;
+    }
+
+    .section h2{
+        font-size:1.8rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .story{
+        padding:18px;
+    }
+
+    .metrics{
+        flex-direction:column;
+    }
+
+    .metric{
+        width:100%;
+        min-width:100%;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:14px;
+    }
+
+    .process-img{
+        width:100%;
+        height:auto;
+    }
+}
+
+/* ==========================
+   SMALL PHONES
+========================== */
+
+@media (max-width: 480px){
+
+    .hero h1{
+        font-size:1.8rem;
+    }
+
+    .subtitle{
+        font-size:0.9rem;
+    }
+
+    .hero p{
+        font-size:0.95rem;
+    }
+
+    .section h2{
+        font-size:1.5rem;
+    }
+
+    .metric h3{
+        font-size:1.5rem;
+    }
+
+    th,
+    td{
+        font-size:13px;
+    }
+
+    footer{
+        font-size:0.9rem;
+        padding:25px 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">NETFLIX BA</div>
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Loan Onboarding Process Improvement</h1>
+
+<p class="subtitle">
+Digital Loan Origination | BFSI | Business Analyst
+</p>
+
+<p>
+Reduced loan onboarding turnaround time from 7 days
+to under 8 hours by automating KYC verification,
+credit assessment, and approval workflows.
+</p>
+
+<a href="#problem" class="btn">View Case Study</a>
+
+<a href="files/Loan-BRD.pdf"
+target="_blank"
+class="btn btn-secondary">
+Download BRD
+</a>
+
+</div>
+
+</section>
+
+<!-- BUSINESS PROBLEM -->
+
+<section id="problem" class="section">
+
+<h2>Business Problem</h2>
+
+<p>
+A retail bank relied heavily on manual processes for
+loan onboarding. Applications were submitted through
+branch offices and routed via email to KYC teams,
+credit analysts, and approvers.
+</p>
+
+<div class="card">
+
+<h3>Challenges</h3>
+
+<ul>
+<li>Average turnaround time of 5-7 business days</li>
+<li>Manual KYC verification caused delays</li>
+<li>High volume of document rework</li>
+<li>No application tracking for customers</li>
+<li>Frequent data entry errors</li>
+<li>Regulatory compliance risks</li>
+</ul>
+
+</div>
+
+</section>
+
+<!-- AS IS -->
+
+<section class="section">
+
+<h2>As-Is Process</h2>
+
+<img src="images/as-is-loan-process.png"
+class="process-img"
+alt="As Is BPMN">
+
+<p>
+The existing onboarding process required several
+manual handoffs and duplicate data entry across systems.
+</p>
+
+</section>
+
+<!-- PAIN POINTS -->
+
+<section class="section">
+
+<h2>Pain Point Analysis</h2>
+
+<table>
+
+<tr>
+<th>Pain Point</th>
+<th>Root Cause</th>
+<th>Business Impact</th>
+</tr>
+
+<tr>
+<td>Long Turnaround Time</td>
+<td>Manual handoffs</td>
+<td>Customer dissatisfaction</td>
+</tr>
+
+<tr>
+<td>Duplicate Data Entry</td>
+<td>Multiple systems</td>
+<td>Errors and rework</td>
+</tr>
+
+<tr>
+<td>KYC Delays</td>
+<td>Manual verification</td>
+<td>Approval delays</td>
+</tr>
+
+<tr>
+<td>No Tracking</td>
+<td>No workflow automation</td>
+<td>Frequent customer calls</td>
+</tr>
+
+<tr>
+<td>Missing Documents</td>
+<td>Incomplete submissions</td>
+<td>Process rework</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- TO BE -->
+
+<section class="section">
+
+<h2>To-Be Process</h2>
+
+<img src="images/to-be-loan-process.png"
+class="process-img"
+alt="To Be BPMN">
+
+<p>
+The future-state process leverages automated KYC,
+credit bureau integration, risk scoring, and workflow
+routing for faster loan approvals.
+</p>
+
+</section>
+
+<!-- FRD -->
+
+<section class="section">
+
+<h2>Functional Requirements (FRD Excerpt)</h2>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+</tr>
+
+<tr>
+<td>FR-001</td>
+<td>Online Loan Application Portal</td>
+</tr>
+
+<tr>
+<td>FR-002</td>
+<td>Document Upload and Validation</td>
+</tr>
+
+<tr>
+<td>FR-003</td>
+<td>Automated KYC Verification</td>
+</tr>
+
+<tr>
+<td>FR-004</td>
+<td>Credit Bureau Integration</td>
+</tr>
+
+<tr>
+<td>FR-005</td>
+<td>Application Status Tracking</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- USER STORIES -->
+
+<section class="section">
+
+<h2>User Stories</h2>
+
+<div class="story">
+<h3>US-001</h3>
+<p>As a customer, I want to apply for a loan online so that I don't have to visit a branch.</p>
+
+<ul>
+<li>Application accessible online</li>
+<li>Mandatory validation enforced</li>
+<li>Confirmation generated</li>
+</ul>
+</div>
+
+<div class="story">
+<h3>US-002</h3>
+<p>As a customer, I want to upload documents electronically.</p>
+
+<ul>
+<li>PDF/JPG supported</li>
+<li>Max file size validation</li>
+<li>Upload success notification</li>
+</ul>
+</div>
+
+<div class="story">
+<h3>US-003</h3>
+<p>As a customer, I want real-time application tracking.</p>
+
+<ul>
+<li>Latest status visible</li>
+<li>Timeline displayed</li>
+<li>Auto refresh available</li>
+</ul>
+</div>
+
+<div class="story">
+<h3>US-004</h3>
+<p>As a KYC Officer, I want failed KYC cases routed for manual review.</p>
+
+<ul>
+<li>Failed applications appear in queue</li>
+<li>Reason for failure visible</li>
+<li>Review status tracked</li>
+</ul>
+</div>
+
+<div class="story">
+<h3>US-005</h3>
+<p>As a Credit Analyst, I want bureau scores retrieved automatically.</p>
+
+<ul>
+<li>Credit score fetched automatically</li>
+<li>Error handling available</li>
+<li>Scores stored against application</li>
+</ul>
+</div>
+
+</section>
+
+<!-- UAT -->
+
+<section class="section">
+
+<h2>UAT Scenarios</h2>
+
+<table>
+
+<tr>
+<th>Scenario</th>
+<th>Expected Result</th>
+</tr>
+
+<tr>
+<td>Loan Application Submitted</td>
+<td>Application created successfully</td>
+</tr>
+
+<tr>
+<td>Missing Mandatory Document</td>
+<td>Error message displayed</td>
+</tr>
+
+<tr>
+<td>KYC Passed</td>
+<td>Move to Credit Assessment</td>
+</tr>
+
+<tr>
+<td>KYC Failed</td>
+<td>Route to Manual Review</td>
+</tr>
+
+<tr>
+<td>Low Risk Application</td>
+<td>Auto Approved</td>
+</tr>
+
+<tr>
+<td>High Risk Application</td>
+<td>Route to Approver</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- RTM -->
+
+<section class="section">
+
+<h2>Requirements Traceability Matrix</h2>
+
+<table>
+
+<tr>
+<th>Requirement</th>
+<th>User Story</th>
+<th>Test Case</th>
+</tr>
+
+<tr>
+<td>FR-001</td>
+<td>US-001</td>
+<td>UAT-01</td>
+</tr>
+
+<tr>
+<td>FR-002</td>
+<td>US-002</td>
+<td>UAT-02</td>
+</tr>
+
+<tr>
+<td>FR-003</td>
+<td>US-004</td>
+<td>UAT-03</td>
+</tr>
+
+<tr>
+<td>FR-004</td>
+<td>US-005</td>
+<td>UAT-05</td>
+</tr>
+
+<tr>
+<td>FR-005</td>
+<td>US-003</td>
+<td>UAT-06</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- RESULTS -->
+
+<section class="section">
+
+<h2>Business Outcomes</h2>
+
+<div class="metrics">
+
+<div class="metric">
+<h3>7 Days → 8 Hrs</h3>
+<p>Turnaround Time</p>
+</div>
+
+<div class="metric">
+<h3>80% → 20%</h3>
+<p>Manual Processing</p>
+</div>
+
+<div class="metric">
+<h3>15% → 2%</h3>
+<p>Error Rate</p>
+</div>
+
+<div class="metric">
+<h3>68% → 91%</h3>
+<p>Customer Satisfaction</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Business Analyst Portfolio | Loan Onboarding Process Improvement
+
+</footer>
+
+</body>
+</html>
