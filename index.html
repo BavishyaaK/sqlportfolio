@@ -183,6 +183,14 @@ margin-top:50px;
 ========================== */
 
 @media (max-width: 768px){
+    .hero{
+        height:auto;
+        min-height:100vh;
+        padding-left:0;                 /* fixes off-center content */
+        justify-content:center;         /* centers hero-content horizontally */
+        background-position: 65% center; /* shift focus to the subject */
+    }
+}
 
     nav{
         padding:15px 20px;
@@ -193,11 +201,7 @@ margin-top:50px;
         font-size:24px;
     }
 
-    .hero{
-        height:auto;
-        min-height:100vh;
-        text-align:center;
-    }
+   
 
     .hero-content{
         margin:120px 20px 40px;
