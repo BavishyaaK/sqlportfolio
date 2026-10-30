@@ -18,8 +18,9 @@ body{
 background:#141414;
 color:white;
 }
-nav{
-    display:flex;
+
+.navbar{
+display:flex;
     justify-content:space-between;
     align-items:center;
     padding:15px 60px;
@@ -28,16 +29,6 @@ nav{
     z-index:1000;
     background:rgba(20,20,20,0.92);
     backdrop-filter:blur(8px);
-}
-.navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 50px;
-background:rgba(0,0,0,0.8);
-position:fixed;
-width:100%;
-z-index:1000;
 }
 
 .logo{
@@ -50,18 +41,7 @@ font-weight:bold;
 font-size:20px;
 
 }  
-  .nav-links{
-    display:flex;
-    gap:28px;
-}
-.nav-links a{
-    color:#fff;
-    text-decoration:none;
-    font-size:0.95rem;
-    padding:6px 0;
-    border-bottom:2px solid transparent;
-    transition:color .2s, border-color .2s;
-}
+  
   .nav-links a:hover{
     color:#e50914;
     border-bottom-color:#e50914;
@@ -229,8 +209,9 @@ margin-top:50px;
 
 @media (max-width: 768px){
 
-  nav{ padding:15px 20px; }          /* delete text-align:center from your old nav rule */
-
+  nav{ padding:15px 20px; 
+       text-align:center;
+    }
     .nav-toggle{ display:block; }
 .nav-links{
         position:absolute;
