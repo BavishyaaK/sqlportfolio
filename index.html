@@ -3,210 +3,312 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title color> Bavishyaa BA Portfolio</title>
+<title>Bavishyaa | AI Product Management Portfolio</title>
+<meta name="description" content="Portfolio of Bavishyaa: AI product management, business analysis, SQL projects and an AI policy summarizer agent.">
+<meta name="theme-color" content="#141414">
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+:root{
+  --bg:#141414; --panel:#1f1f1f; --line:#333; --red:#e50914;
+  --text:#f5f5f5; --muted:#b8b8b8; --nav:68px;
 }
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 12px)}
 body{
-background:#141414;
-color:white;
+  background:var(--bg); color:var(--text); line-height:1.6;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
+/* ---------- Navigation ---------- */
 .navbar{
-display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 60px;
-    position:fixed;
-    top:0; left:0; right:0;
-    z-index:1000;
-    background:rgba(20,20,20,0.92);
-    backdrop-filter:blur(8px);
+  position:fixed; top:0; left:0; right:0; z-index:1000; height:var(--nav);
+  display:flex; justify-content:space-between; align-items:center; padding:0 60px;
+  background:rgba(20,20,20,.94); backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.06);
 }
+.logo{color:var(--red);font-size:28px;font-weight:700;letter-spacing:.5px;text-decoration:none}
+.nav-links{display:flex;gap:28px}
+.nav-links a{
+  text-decoration:none; font-size:.95rem; padding:6px 0;
+  border-bottom:2px solid transparent; transition:color .2s,border-color .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--red);border-bottom-color:var(--red)}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:10px}
+.nav-toggle span{display:block;width:24px;height:2px;margin:5px 0;background:#fff;transition:transform .3s,opacity .3s}
 
-.logo{
-color:#E50914;
-font-size:32px;
-font-weight:bold;
-}
-.side{
-  color:#E50914;
-font-size:20px;
-
-}  
-  
-  .nav-links a:hover{
-    color:#e50914;
-    border-bottom-color:#e50914;
-}
-
-.nav-toggle{
-    display:none;
-    background:none;
-    border:0;
-    cursor:pointer;
-    padding:8px;
-}
-
-.nav-toggle span{
-    display:block;
-    width:24px;
-    height:2px;
-    margin:5px 0;
-    background:#fff;
-    transition:transform .3s, opacity .3s;
-}
-.image-link{
-    display:block;
-    text-decoration:none;
-}
-
-.image-link img{
-    display:block;
-}
+/* ---------- Hero ---------- */
 .hero{
-    min-height:100vh;               
-    background-image:
-        linear-gradient(to top, #141414 10%, transparent 60%),
-        url('award-straightened.jpg');
-    background-size: 100% 100%, contain;   /* gradient fills the box, image fits inside it */
-    background-position: center, center;
-    background-repeat: no-repeat;
-    background-color:#141414;       /* fills the empty space around the image */
-    display:flex;
-    align-items:center;
-    padding-left:60px;
+  min-height:100vh; min-height:100svh; padding:calc(var(--nav) + 48px) 60px 60px;
+  display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:center;
+  background:radial-gradient(ellipse at 85% 40%,rgba(229,9,20,.12),transparent 55%),var(--bg);
 }
-
-.hero-content{
-max-width:600px;
-}
-
-.hero h1{
-font-size:4rem;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:1.2rem;
-margin-bottom:25px;
-}
-
+.hero-content{max-width:620px}
+.hero h1{font-size:4rem;line-height:1.1;margin-bottom:14px;color:var(--red)}
+.tagline{font-size:1.15rem;font-weight:600;margin-bottom:14px}
+.hero p{font-size:1.1rem;color:var(--muted);margin-bottom:28px;max-width:56ch}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
 .btn{
-background:#E50914;
-color:white;
-padding:12px 30px;
-text-decoration:none;
-border-radius:4px;
-font-weight:bold;
+  display:inline-block; background:var(--red); color:#fff; padding:12px 30px;
+  border:2px solid var(--red); border-radius:4px; font-weight:700; text-decoration:none;
+  transition:background .2s,color .2s;
 }
-    .card-content p{
-    margin-bottom:15px;
+.btn:hover{background:#b8070f;border-color:#b8070f}
+.btn.ghost{background:transparent}
+.btn.ghost:hover{background:var(--red)}
+.hero-figure{margin:0}
+.hero-figure img{
+  display:block; width:100%; height:auto; border-radius:8px;
+  border:1px solid var(--line); box-shadow:0 0 40px rgba(229,9,20,.2);
 }
-.section{
-padding:50px;
-}
+.hero-figure figcaption{margin-top:10px;font-size:.9rem;color:var(--muted);text-align:center}
 
-.section h2{
-margin-bottom:20px;
+/* ---------- Sections ---------- */
+.section{padding:70px 60px;max-width:1200px;margin:0 auto}
+.section h2{font-size:2rem;margin-bottom:8px}
+.section .lead{color:var(--muted);margin-bottom:28px;max-width:64ch}
+.section h2+.cards,.section h2+.skill-grid,.section h2+.cert-list,.section h2+p,.section h2+div{margin-top:20px}
+
+/* ---------- Featured work ---------- */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.feature{
+  background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--red);
+  border-radius:8px; padding:26px; display:flex; flex-direction:column; gap:12px;
 }
-.section h4{
-  margin-bottom:20px;
-}
+.feature h3{color:var(--red);font-size:1.3rem}
+.feature p{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:#2a2a2a;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:.85rem}
+.feature .btn{align-self:flex-start;margin-top:auto}
+
+/* ---------- SQL project cards ---------- */
 .project-row{
-display:flex;
-gap:20px;
-overflow-x:auto;
-padding-bottom:10px;
+  display:flex; gap:20px; overflow-x:auto; padding:12px 4px 18px;
+  scroll-snap-type:x proximity;
 }
-
 .card{
-background:#222;
-min-width:320px;
-border-radius:8px;
-overflow:hidden;
-transition:.3s;
+  flex:0 0 320px; background:var(--panel); border:2px solid transparent; border-radius:8px;
+  overflow:hidden; cursor:pointer; scroll-snap-align:start; transition:transform .25s,box-shadow .25s;
 }
+.card img{display:block;width:100%;height:180px;object-fit:cover}
+.card-content{padding:16px}
+.card h3{color:var(--red);margin-bottom:8px}
+.card p{color:var(--muted);margin-bottom:6px}
+.project-details{display:none;margin-top:10px;color:#ddd;line-height:1.5}
+.card.active{border-color:var(--red);box-shadow:0 0 20px rgba(229,9,20,.6)}
+.card.active .project-details{display:block}
+.hint{font-size:.85rem;color:#888;margin-top:10px}
+@media (hover:hover){.card:hover{transform:translateY(-4px)}}
 
+/* ---------- Skills ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.skill-group h3{font-size:1.05rem;margin-bottom:12px}
+.skill-group .chips{gap:10px}
+.skill{background:var(--red);padding:7px 16px;border-radius:20px;font-size:.9rem}
 
-.card:hover{
-transform:scale(1.05);
-cursor:pointer;
-}
+/* ---------- Certifications ---------- */
+.cert-list{list-style:none;display:grid;gap:12px}
+.cert{background:var(--panel);border-left:4px solid var(--red);border-radius:4px;padding:14px 18px}
+.cert a{font-weight:700}
 
+#about p{max-width:75ch;color:#ddd}
+footer{text-align:center;padding:36px 20px;background:#000;margin-top:40px}
+footer h3{color:var(--red);margin-bottom:6px}
+footer p{color:var(--muted);margin-top:6px}
 
-.card.active{
-    transform:scale(1.1);
-    box-shadow:0 0 20px rgba(229,9,20,0.8);
-    border:2px solid #E50914;
+/* ---------- Tablet / mobile ---------- */
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:36px;text-align:center}
+  .hero-content{margin:0 auto}
+  .hero p{margin-left:auto;margin-right:auto}
+  .btn-row{justify-content:center}
 }
+@media (max-width:768px){
+  .navbar{padding:0 20px}
+  .logo{font-size:22px}
+  .nav-toggle{display:block}
+  .nav-links{
+    position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:0;
+    background:var(--bg); border-top:1px solid rgba(255,255,255,.08);
+    max-height:0; overflow:hidden; transition:max-height .35s ease;
+  }
+  .nav-links.open{max-height:380px}
+  .nav-links a{padding:16px 24px;font-size:1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-links a:hover,.nav-links a.active{background:rgba(229,9,20,.08);border-bottom-color:rgba(255,255,255,.06)}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle.open span:nth-child(2){opacity:0}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .hero{padding:calc(var(--nav) + 32px) 20px 48px}
+  .hero h1{font-size:2.4rem}
+  .tagline{font-size:1rem}
+  .hero p{font-size:1rem}
+  .btn{display:block;width:100%;text-align:center}
+  .btn-row{flex-direction:column;width:100%}
+  .section{padding:50px 20px}
+  .section h2{font-size:1.7rem}
+  .card{flex-basis:78vw}
+}
+@media (max-width:480px){
+  .hero h1{font-size:1.9rem}
+  footer{font-size:.9rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
 
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
+<nav class="navbar">
+  <a class="logo" href="#top">BAVISHYAA</a>
+  <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-links" id="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#ai-agent">My AI Agent</a>
+    <a href="loan-onboarding.html">BA Project</a>
+    <a href="#skills">Skills</a>
+    <a href="Resumegit.docx" target="_blank" rel="noopener">Resume</a>
+  </div>
+</nav>
 
-.card-content{
-padding:15px;
-}
+<header class="hero" id="top">
+  <div class="hero-content">
+    <h1>SQL Portfolio</h1>
+    <p class="tagline">Aspiring AI Product Manager | Business Analyst | Banking Operations Professional</p>
+    <p>MySQL projects, database design, business analysis and an AI agent that summarises policy documents.</p>
+    <div class="btn-row">
+      <a href="#projects" class="btn">Explore Projects</a>
+      <a href="#ai-agent" class="btn ghost">Meet My AI Agent</a>
+    </div>
+  </div>
+  <figure class="hero-figure">
+    <img src="award-straightened.jpg" alt="Citibank Europe Instant Recognition Award for Bavishyaa Kumar, September 2017">
+    <figcaption>Instant Recognition Award for global teamwork, Citi Poland, 2017</figcaption>
+  </figure>
+</header>
 
-.card h3{
-color:#E50914;
-margin-bottom:10px;
-}
+<section class="section" id="ai-agent">
+  <h2>Featured Work</h2>
+  <p class="lead">An AI agent and a business analysis case study, alongside my SQL projects.</p>
+  <div class="feature-grid">
+    <article class="feature">
+      <h3>Policy Summarizer: AI Agent</h3>
+      <p>A Python agent that reads a policy document (PDF or text) and returns a structured, plain-English summary: purpose, who it applies to, key rules, deadlines and penalties, and exceptions. It is instructed to use only what the document says.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">Claude API</span><span class="chip">Prompt design</span><span class="chip">pypdf</span></div>
+      <a class="btn" href="Policy%20Summarizer%20Project%20Write-Up.docx" target="_blank" rel="noopener">Read the write-up</a>
+    </article>
+    <article class="feature">
+      <h3>Loan Onboarding Process Improvement</h3>
+      <p>An illustrative business analysis case study: as-is and to-be swimlane processes, functional requirements, user stories, UAT scenarios and a requirements traceability matrix.</p>
+      <div class="chips"><span class="chip">BRD / FSD</span><span class="chip">User stories</span><span class="chip">UAT</span><span class="chip">Traceability</span></div>
+      <a class="btn" href="loan-onboarding.html">View the case study</a>
+    </article>
+  </div>
+</section>
 
-.skills{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-}
-  .queries{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-}
-.project-details{
-    display:none;
-    margin-top:10px;
-    color:#ccc;
-    line-height:1.5;
-}
+<section class="section" id="projects">
+  <h2>Featured SQL Projects</h2>
+  <div class="project-row">
+    <article class="card" tabindex="0" role="button" aria-expanded="false">
+      <img src="Triggers.png" alt="SQL trigger screenshot for the Customer Order Management database">
+      <div class="card-content">
+        <h3>Customer Order Management</h3>
+        <p>Database design with primary and foreign keys, constraints, triggers and relationships.</p>
+        <div class="project-details">Created tables using primary keys, foreign keys, triggers and data validation.</div>
+      </div>
+    </article>
+    <article class="card" tabindex="0" role="button" aria-expanded="false">
+      <img src="Self join.png" alt="SQL self join query showing an employee hierarchy">
+      <div class="card-content">
+        <h3>Employee Hierarchy</h3>
+        <p>Who reports to whom, shown with a self join.</p>
+        <div class="project-details">Displayed the employee hierarchy using a self join.</div>
+      </div>
+    </article>
+    <article class="card" tabindex="0" role="button" aria-expanded="false">
+      <img src="Parameter bindng error.png" alt="Stored procedure output showing a parameter binding error message">
+      <div class="card-content">
+        <h3>Error Handling</h3>
+        <p>User-defined exceptions using GET DIAGNOSTICS and SQLSTATE.</p>
+        <div class="project-details">Created a stored procedure to capture errors involving parameter binding, null values and duplicate data.</div>
+      </div>
+    </article>
+    <article class="card" tabindex="0" role="button" aria-expanded="false">
+      <img src="Stored.png" alt="Stored procedure query result for customer orders">
+      <div class="card-content">
+        <h3>Stored Procedures</h3>
+        <p>Reusable, parameterised database logic.</p>
+        <div class="project-details">Retrieved customer order data based on country and payments.</div>
+      </div>
+    </article>
+  </div>
+  <p class="hint">Tap or click a project for details.</p>
+</section>
 
-.card.active .project-details{
-    display:block;
-}  
+<section class="section" id="queries">
+  <h2>SQL Queries</h2>
+  <p class="lead">The full set of queries from my SQL assignment is on GitHub.</p>
+  <a class="btn" href="https://github.com/BavishyaaK/sqlportfolio/blob/main/sql%20assignment%20bavi.sql" target="_blank" rel="noopener">View Code</a>
+</section>
 
-.skill{
-background:#E50914;
-padding:10px 20px;
-border-radius:20px;
-}
-.cert{
-background:#E50914;
-padding:10px 20px;
-border-radius:20px;
-}
-  .red-title {
-    color: #e50914;
-}
-footer{
-text-align:center;
-padding:30px;
-background:black;
-margin-top:50px;
-}
-/* ==========================
-   MOBILE
-========================== */
+<section class="section" id="skills">
+  <h2>Skills</h2>
+  <div class="skill-grid">
+    <div class="skill-group"><h3>Database</h3><div class="chips">
+      <span class="skill">MySQL</span><span class="skill">Joins</span><span class="skill">Views</span><span class="skill">Subqueries</span>
+      <span class="skill">Stored Procedures</span><span class="skill">Constraints</span><span class="skill">Database Design</span><span class="skill">Data Analysis</span>
+    </div></div>
+    <div class="skill-group"><h3>Methodologies</h3><div class="chips">
+      <span class="skill">Agile/Scrum</span><span class="skill">SDLC</span><span class="skill">STLC</span><span class="skill">Waterfall</span><span class="skill">Change Management</span>
+    </div></div>
+    <div class="skill-group"><h3>Documentation</h3><div class="chips">
+      <span class="skill">BRD</span><span class="skill">FSD</span><span class="skill">User Stories</span><span class="skill">Traceability Matrix</span>
+    </div></div>
+    <div class="skill-group"><h3>Tools</h3><div class="chips">
+      <span class="skill">JIRA</span><span class="skill">SharePoint</span><span class="skill">Visio</span><span class="skill">SQL</span>
+      <span class="skill">PowerBI</span><span class="skill">Lexis Nexis</span><span class="skill">Flexcube</span><span class="skill">MS Office Suite</span>
+    </div></div>
+    <div class="skill-group"><h3>Technical Basics</h3><div class="chips">
+      <span class="skill">Selenium</span><span class="skill">Java</span><span class="skill">Python</span><span class="skill">CSS</span>
+    </div></div>
+    <div class="skill-group"><h3>AI and Automation</h3><div class="chips">
+      <span class="skill">AI Agents</span><span class="skill">Claude API</span><span class="skill">Prompt Design</span>
+    </div></div>
+    <div class="skill-group"><h3>Awareness</h3><div class="chips">
+      <span class="skill">Lean Six Sigma</span><span class="skill">PMP</span><span class="skill">Disciplined Agile</span>
+      <span class="skill">Payments</span><span class="skill">Lending</span><span class="skill">Fraud and Financial Crime</span>
+    </div></div>
+  </div>
+</section>
 
+<section class="section" id="certifications">
+  <h2>Certifications &amp; Accomplishments</h2>
+  <ul class="cert-list">
+    <li class="cert">Operational Excellence: Instant Recognition Award for Extraordinary Teamwork (Citi Poland, 2017). <a href="award-straightened.jpg" target="_blank" rel="noopener">View certificate</a></li>
+    <li class="cert">AI Agents in Fintech: certificate provided by IT-ITeS SSC NASSCOM.</li>
+    <li class="cert">Digital Marketing Analytics: certification provided by Elevify.</li>
+    <li class="cert">Investment Banking: Professional Certificate in Investment Banking (Irish Institute of Banking).</li>
+    <li class="cert">Compliance: Foundational Anti-Money Laundering (AML) Certification (International Compliance Association).</li>
+    <li class="cert">Cyber-Security: Prevention of Cyber-Crime &amp; Fraud Management (IIBF India, 2024).</li>
+  </ul>
+</section>
+
+<section class="section" id="about">
+  <h2>About Me</h2>
+  <p>Strategic Business &amp; Compliance Analyst with 7 years of cross-functional experience across Global Banking Operations (Citi, Warsaw) and Banking IT Operations (Navi Mumbai). Proven track record in bridging business requirements with technical delivery through BRD/FSD, UAT and Agile project management, with additional expertise in AML/KYC, investment-banking workflows, digital marketing analytics and cyber-fraud risk. This portfolio showcases my SQL assignments, a business analysis case study and an AI agent project.</p>
+</section>
+
+<footer>
+  <h3>BAVISHYAA</h3>
+  <p>BA &amp; SQL Portfolio</p>
+  <p>Email: <a href="mailto:balameenabk@protonmail.com">balameenabk@protonmail.com</a> &middot; <a href="https://github.com/BavishyaaK" target="_blank" rel="noopener">GitHub</a></p>
+</footer>
+
+<script>
 @media (max-width: 768px){
 
   nav{ padding:15px 20px; 
@@ -359,197 +461,6 @@ margin-top:50px;
     }
   
 }
-</style>
-</head>
-<body>
-
-<nav class="navbar">
-<div class="logo">BAVISHYAA</div>
-    <div class ="side">  Aspiring AI Product Manager | Business Analyst | Banking Operations Professional</div>
-
-<div class="nav-links">
-<a href="#projects">Projects</a>
-  <a href="Policy Summarizer Project Write-Up.docx" target = "_blank">My AI Agent</a>
-  <a href="loan-onboarding.html"> BA Project </a>
-<a href="#skills">Skills</a>
-<a href="Resumegit.docx" target="_blank">
-Resume
-</a>
-</div>
-</nav>
-
-<section class="hero">
-
-<div class="hero-content">
-
-<h1 class="red-title">SQL Portfolio</h1>
-
-<p>
-MySQL Projects, Database Design, Views,
-Joins, Stored Procedures and Business Analysis.
-</p>
-
-<a href="#projects" class="btn">
-Explore Projects
-</a>
-
-</div>
-
-</section>
-
-<section class="section" id="projects">
-
-<h2>Featured Projects</h2>
-
-<div class="project-row">
-
-<div class="card">
-   
-<img src="Triggers.png">
-
-<div class="card-content">
-<h3>Customer Order Management</h3>
-<p>
-Database design using PK, FK,
-constraints, triggers and relationships.
-</p>
-<div class="project-details">
-            Created tables using primary keys,
-            foreign keys, triggers and data validation.
-        </div>
-</div>
-
-</div>
-
-<div class="card">
-   
-<img src="Self join.png">
-
-<div class="card-content">
-<h3>Sales Reporting View</h3>
-<p>
-Business reporting using SQL views
-and aggregations.
-</p>
-  <div class="project-details">
-            Displayed Employee hierarchy using self join.
-        </div>
-</div>
-</div>
-
-<div class="card">
-   
-<img src="Parameter bindng error.png">
-
-<div class="card-content">
-<h3>Error Handling</h3>
-<p>
-Error Handling - User defined exceptions using Diagnostics and SQLstate
-</p>
-<div class="project-details">
-            Created a stored procedure to capture errors involving parameter binding,null and duplicate data.
-        </div>
-</div>
-</div>
-
-<div class="card">
-   
-<img src="Stored.png">
-
-<div class="card-content">
-<h3>Stored Procedures</h3>
-<p>
-Reusable and parameterized
-database logic.
-</p>
-  <div class="project-details">
-            Obtained data about customer orders based on country and payments.
-        </div>
-</div>
-</div>
-
-</div>
-
-</section>
-<section class="section" id="queries">
-
-
-<h4>SQL Queries</h4>
-
-<div>
-  <a href="https://github.com/BavishyaaK/sqlportfolio/blob/main/sql%20assignment%20bavi.sql" class = btn
-target="_blank">
-View Code
-</a>
-
-</div>
-</section>
-  
-<section class="section" id="skills">
-
-<h2>Skills</h2>
-
-<div class="skills">
-
-<div class="skill">MySQL</div>
-<div class="skill">Joins</div>
-<div class="skill">Views</div>
-<div class="skill">Subqueries</div>
-<div class="skill">Stored Procedures</div>
-<div class="skill">Constraints</div>
-<div class="skill">Database Design</div>
-<div class="skill">Data Analysis</div>
-<div class="skill">
-Methodologies: Agile/Scrum, SDLC, STLC, Waterfall, Change Management. Documentation: Business Requirement Document (BRD), Functional Specification Document (FSD), User Stories, Traceability Matrix. </div>
-<div class="skill">
-Tools: JIRA, SharePoint, Visio, SQL, PowerBI, Lexis Nexis, Flexcube, MS Office Suite. Technical Basics: Selenium, Java, Python, CSS, Lean Sigma Awareness, Awareness of PMP & Disciplined Agile, Awareness of payments, lending, fraud and financial crime, into architecture, governance, and production deployment.
-</div>
-
-</div>
-
-</section>
-
-<section class="section">
-
-<section class="section" id="Certifications">
-
-<h2>Certifications & Accomplishments</h2>
-<div class="Certs">
-
-  <div class ="cert">  
-  <a href="award.png" target="_blank" class="image-link" style = "color:white" font-weight:bold > Operational Excellence: Instant Recognition Award for Extraordinary Teamwork (Citi Poland, 2017).
- </a> </div>
-<div class="cert">AI Agents in Fintech: Completion of certificated provided by IT-ITeS SSC NASSCOM.</div>
-<div class="cert">Digital Marketing Analytics: Completion of certification provided by Elevify</div>
-<div class="cert">Investment Banking: Professional Certificate in Investment Banking (Irish Institute of Banking). </div>
-<div class="cert">Compliance: Foundational Anti-Money Laundering (AML) Certification (International Compliance Association). </div>
-<div class ="cert">Cyber-Security: Prevention of Cyber-Crime & Fraud Management (IIBF India, 2024). </div>
-
-</div>
-
-</section>
-
-<h2>About Me</h2>
-
-<p>
-Strategic Business & Compliance Analyst with 7 years of cross‑functional experience across Global Banking Operations (Citi, Warsaw) and Banking IT Operations (Navi Mumbai). 
-Proven track record in bridging business requirements with technical delivery through BRD/FSD, UAT, and Agile Project Management, with additional expertise in AML/KYC, investment‑banking workflows, digital marketing analytics and cyber‑fraud‑risk.
-This portfolio showcases my completed SQL assignments
-and projects.
-</p>
-
-</section>
-
-<footer>
-
-<h3>BAVISHYAA</h3>
-
-<p>
-SQL BA Portfolio
-<div> Email: balameenabk@protonmail.com </div>
-</p>
-
-</footer>
-
+</script>
 </body>
 </html>
