@@ -18,7 +18,17 @@ body{
 background:#141414;
 color:white;
 }
-
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 60px;
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:1000;
+    background:rgba(20,20,20,0.92);
+    backdrop-filter:blur(8px);
+}
 .navbar{
 display:flex;
 justify-content:space-between;
@@ -40,10 +50,38 @@ font-weight:bold;
 font-size:20px;
 
 }  
+  .nav-links{
+    display:flex;
+    gap:28px;
+}
 .nav-links a{
-color:white;
-text-decoration:none;
-margin-left:20px;
+    color:#fff;
+    text-decoration:none;
+    font-size:0.95rem;
+    padding:6px 0;
+    border-bottom:2px solid transparent;
+    transition:color .2s, border-color .2s;
+}
+  .nav-links a:hover{
+    color:#e50914;
+    border-bottom-color:#e50914;
+}
+
+.nav-toggle{
+    display:none;
+    background:none;
+    border:0;
+    cursor:pointer;
+    padding:8px;
+}
+
+.nav-toggle span{
+    display:block;
+    width:24px;
+    height:2px;
+    margin:5px 0;
+    background:#fff;
+    transition:transform .3s, opacity .3s;
 }
 .image-link{
     display:block;
@@ -191,11 +229,39 @@ margin-top:50px;
 
 @media (max-width: 768px){
 
-    nav{
-        padding:15px 20px;
-        text-align:center;
+  nav{ padding:15px 20px; }          /* delete text-align:center from your old nav rule */
+
+    .nav-toggle{ display:block; }
+.nav-links{
+        position:absolute;
+        top:100%; left:0; right:0;
+        flex-direction:column;
+        gap:0;
+        background:#141414;
+        border-top:1px solid rgba(255,255,255,0.08);
+        max-height:0;
+        overflow:hidden;
+        transition:max-height .35s ease;
     }
 
+    .nav-links.open{ max-height:360px; }
+
+    .nav-links a{
+        padding:16px 24px;
+        font-size:1rem;
+        border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-links a:hover{
+        background:rgba(229,9,20,0.08);
+        border-bottom-color:rgba(255,255,255,0.06);
+    }
+
+    /* hamburger turns into an X */
+    .nav-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2){ opacity:0; }
+    .nav-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+}
     .logo{
         font-size:24px;
     }
