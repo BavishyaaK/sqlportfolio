@@ -623,132 +623,156 @@ routing for faster loan approvals.
 </ul>
 </div>
 
+<div class="story">
+<h3>US-006</h3>
+<p>As a KYC Officer, I want customer documents validated automatically so that I only handle exceptions.</p>
+
+<ul>
+<li>Identity and address documents checked against the submitted application data</li>
+<li>Passed cases move to credit assessment without manual action</li>
+<li>Result and timestamp stored against the application</li>
+</ul>
+</div>
+
+  <div class="story">
+    <h3>US-007</h3>
+    <p>As a Credit Analyst, I want applications risk-scored and low-risk ones auto-approved within policy limits so that straightforward loans are decided without manual effort.</p>
+    <ul>
+      <li>Risk score calculated from the retrieved bureau score and application data</li>
+      <li>Applications within the low-risk threshold are auto-approved</li>
+      <li>All other applications are routed to the Approver</li>
+    </ul>
+  </div>
+    <div class="story">
+    <h3>US-008</h3>
+    <p>As an Approver, I want high-risk applications routed to my queue with the KYC and credit summary so that I can approve or reject with full context.</p>
+    <ul>
+      <li>Queue shows risk score, KYC result and credit score per application</li>
+      <li>Approve and Reject actions require a recorded reason</li>
+      <li>Customer status updates immediately after the decision</li>
+    </ul>
+  </div>
+    <div class="story">
+    <h3>US-009</h3>
+    <p>As a Compliance Officer, I want every decision and status change logged so that the process is audit-ready.</p>
+    <ul>
+      <li>Each decision records user or system, timestamp and outcome</li>
+      <li>Log entries cannot be edited or deleted</li>
+      <li>Log can be filtered by application and date range</li>
+    </ul>
+  </div>
+    
 </section>
 
 <!-- UAT -->
 
-<section class="section">
-
-<h2>UAT Scenarios</h2>
-
-<table>
-
-<tr>
-<th>Scenario</th>
-<th>Expected Result</th>
-</tr>
-
-<tr>
-<td>Loan Application Submitted</td>
-<td>Application created successfully</td>
-</tr>
-
-<tr>
-<td>Missing Mandatory Document</td>
-<td>Error message displayed</td>
-</tr>
-
-<tr>
-<td>KYC Passed</td>
-<td>Move to Credit Assessment</td>
-</tr>
-
-<tr>
-<td>KYC Failed</td>
-<td>Route to Manual Review</td>
-</tr>
-
-<tr>
-<td>Low Risk Application</td>
-<td>Auto Approved</td>
-</tr>
-
-<tr>
-<td>High Risk Application</td>
-<td>Route to Approver</td>
-</tr>
-
-</table>
-
+<section class="section" id="uat">
+  <h2>UAT Scenarios</h2>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Scenario</th><th>Expected Result</th><th>Requirement</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>UAT-01</td><td>Loan application submitted</td><td>Application created and confirmation generated</td><td>FR-001</td></tr>
+      <tr><td>UAT-02</td><td>Missing mandatory document</td><td>Error message displayed and submission blocked</td><td>FR-002</td></tr>
+      <tr><td>UAT-03</td><td>KYC passed</td><td>Application moves to credit assessment</td><td>FR-003</td></tr>
+      <tr><td>UAT-04</td><td>KYC failed</td><td>Routed to manual review queue with failure reason visible</td><td>FR-006</td></tr>
+      <tr><td>UAT-05</td><td>Credit score requested</td><td>Score retrieved automatically and stored against the application</td><td>FR-004</td></tr>
+      <tr><td>UAT-06</td><td>Credit bureau unavailable</td><td>Error handled, application not lost, case flagged for retry</td><td>FR-004</td></tr>
+      <tr><td>UAT-07</td><td>Low-risk application</td><td>Auto-approved</td><td>FR-007</td></tr>
+      <tr><td>UAT-08</td><td>High-risk application</td><td>Routed to Approver queue with KYC and credit summary</td><td>FR-007, FR-008</td></tr>
+      <tr><td>UAT-09</td><td>Approver decision</td><td>Approve or reject recorded with reason; customer status updated</td><td>FR-008</td></tr>
+      <tr><td>UAT-10</td><td>Customer checks application status</td><td>Latest status and timeline displayed</td><td>FR-005</td></tr>
+      <tr><td>UAT-11</td><td>Audit review</td><td>Every decision and status change logged with user and timestamp</td><td>FR-009</td></tr>
+    </tbody>
+  </table>
 </section>
-
 <!-- RTM -->
 
-<section class="section">
-
-<h2>Requirements Traceability Matrix</h2>
-
-<table>
-
-<tr>
-<th>Requirement</th>
-<th>User Story</th>
-<th>Test Case</th>
-</tr>
-
-<tr>
-<td>FR-001</td>
-<td>US-001</td>
-<td>UAT-01</td>
-</tr>
-
-<tr>
-<td>FR-002</td>
-<td>US-002</td>
-<td>UAT-02</td>
-</tr>
-
-<tr>
-<td>FR-003</td>
-<td>US-004</td>
-<td>UAT-03</td>
-</tr>
-
-<tr>
-<td>FR-004</td>
-<td>US-005</td>
-<td>UAT-05</td>
-</tr>
-
-<tr>
-<td>FR-005</td>
-<td>US-003</td>
-<td>UAT-06</td>
-</tr>
-
-</table>
-
+<section class="section" id="rtm">
+  <h2>Requirements Traceability Matrix</h2>
+  <table>
+    <thead>
+      <tr><th>Requirement</th><th>User Story</th><th>Test Case(s)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>FR-001</td><td>US-001</td><td>UAT-01</td></tr>
+      <tr><td>FR-002</td><td>US-002</td><td>UAT-02</td></tr>
+      <tr><td>FR-003</td><td>US-006</td><td>UAT-03</td></tr>
+      <tr><td>FR-004</td><td>US-005</td><td>UAT-05, UAT-06</td></tr>
+      <tr><td>FR-005</td><td>US-003</td><td>UAT-10</td></tr>
+      <tr><td>FR-006</td><td>US-004</td><td>UAT-04</td></tr>
+      <tr><td>FR-007</td><td>US-007</td><td>UAT-07, UAT-08</td></tr>
+      <tr><td>FR-008</td><td>US-008</td><td>UAT-08, UAT-09</td></tr>
+      <tr><td>FR-009</td><td>US-009</td><td>UAT-11</td></tr>
+    </tbody>
+  </table>
 </section>
 
 <!-- RESULTS -->
 
-<section class="section">
+<section class="section" id="outcomes">
+  <h2>Business Outcomes (Target State)</h2>
+  <p><em>Illustrative case study. The figures below are targets set for the proposed solution, not measured results.</em></p>
 
-<h2>Business Outcomes</h2>
+  <div class="metrics">
+    <div class="metric">
+      <h3>5–7 days → under 8 hrs</h3>
+      <p>Turnaround time (straight-through applications)</p>
+    </div>
+    <div class="metric">
+      <h3>80% → 20%</h3>
+      <p>Manual processing</p>
+    </div>
+    <div class="metric">
+      <h3>15% → 2%</h3>
+      <p>Error and rework rate</p>
+    </div>
+    <div class="metric">
+      <h3>68% → 91%</h3>
+      <p>Customer satisfaction</p>
+    </div>
+  </div>
 
-<div class="metrics">
+  <h3>How Each Outcome Would Be Measured</h3>
+  <table>
+    <thead>
+      <tr><th>KPI</th><th>Baseline (As-Is)</th><th>Target (To-Be)</th><th>Measurement</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Turnaround time</td>
+        <td>5–7 business days</td>
+        <td>Under 8 hours for straight-through applications</td>
+        <td>Submission-to-decision timestamps from workflow system logs</td>
+      </tr>
+      <tr>
+        <td>Manual processing</td>
+        <td>80% of process steps need human handling</td>
+        <td>20%</td>
+        <td>Share of steps with a manual touch per application, from the workflow report</td>
+      </tr>
+      <tr>
+        <td>Error and rework rate</td>
+        <td>15% of applications</td>
+        <td>2%</td>
+        <td>Applications needing data correction or document rework ÷ total applications</td>
+      </tr>
+      <tr>
+        <td>Customer satisfaction</td>
+        <td>68%</td>
+        <td>91%</td>
+        <td>Post-decision customer survey score</td>
+      </tr>
+    </tbody>
+  </table>
 
-<div class="metric">
-<h3>7 Days → 8 Hrs</h3>
-<p>Turnaround Time</p>
-</div>
-
-<div class="metric">
-<h3>80% → 20%</h3>
-<p>Manual Processing</p>
-</div>
-
-<div class="metric">
-<h3>15% → 2%</h3>
-<p>Error Rate</p>
-</div>
-
-<div class="metric">
-<h3>68% → 91%</h3>
-<p>Customer Satisfaction</p>
-</div>
-
-</div>
+  <h3>Assumptions</h3>
+  <ul>
+    <li>Baselines are assumed averages for a retail bank with a branch-led, email-routed loan process.</li>
+    <li>The under-8-hour target applies to straight-through cases (KYC passed and low risk). Manual-review and high-risk cases follow a separate service level: [define, for example X business hours].</li>
+    <li>Targets would be validated against a sample of recent applications before go-live.</li>
+  </ul>
 
 </section>
 
