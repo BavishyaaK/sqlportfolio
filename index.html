@@ -178,7 +178,132 @@ padding:30px;
 background:black;
 margin-top:50px;
 }
+/* ==========================
+   MOBILE
+========================== */
 
+@media (max-width: 768px){
+
+    nav{
+        padding:15px 20px;
+        text-align:center;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .hero{
+        height:auto;
+        min-height:100vh;
+        text-align:center;
+    }
+
+    .hero-content{
+        margin:120px 20px 40px;
+        max-width:100%;
+    }
+
+    .hero h1{
+        font-size:2.3rem;
+        line-height:1.2;
+    }
+
+    .subtitle{
+        font-size:1rem;
+    }
+
+    .hero p{
+        font-size:1rem;
+    }
+
+    .btn{
+        display:block;
+        width:100%;
+        margin-bottom:15px;
+        margin-right:0;
+        text-align:center;
+    }
+
+    .section{
+        padding:50px 20px;
+    }
+
+    .section h2{
+        font-size:1.8rem;
+    }
+
+    .card{
+        padding:20px;
+    }
+
+    .story{
+        padding:18px;
+    }
+
+    .metrics{
+        flex-direction:column;
+    }
+
+    .metric{
+        width:100%;
+        min-width:100%;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+    th,
+    td{
+        padding:10px;
+        font-size:14px;
+    }
+
+    .process-img{
+        width:100%;
+        height:auto;
+    }
+}
+
+/* ==========================
+   SMALL PHONES
+========================== */
+
+@media (max-width: 480px){
+
+    .hero h1{
+        font-size:1.8rem;
+    }
+
+    .subtitle{
+        font-size:0.9rem;
+    }
+
+    .hero p{
+        font-size:0.95rem;
+    }
+
+    .section h2{
+        font-size:1.5rem;
+    }
+
+    .metric h3{
+        font-size:1.5rem;
+    }
+
+    th,
+    td{
+        font-size:13px;
+    }
+
+    footer{
+        font-size:0.9rem;
+        padding:25px 15px;
+    }
+}
 </style>
 </head>
 <body>
