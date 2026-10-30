@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title color:red> Bavishyaa BA Portfolio</title>
+<title color> Bavishyaa BA Portfolio</title>
 
 <style>
 
@@ -54,13 +54,17 @@ margin-left:20px;
     display:block;
 }
 .hero{
-height:250vh;
-background:
-linear-gradient(to top, #141414 10%, transparent 60%),
-url('award-straightened.jpg') center/cover;
-display:flex;
-align-items:center;
-padding-left:60px;
+    min-height:100vh;               
+    background-image:
+        linear-gradient(to top, #141414 10%, transparent 60%),
+        url('award-straightened.jpg');
+    background-size: 100% 100%, contain;   /* gradient fills the box, image fits inside it */
+    background-position: center, center;
+    background-repeat: no-repeat;
+    background-color:#141414;       /* fills the empty space around the image */
+    display:flex;
+    align-items:center;
+    padding-left:60px;
 }
 
 .hero-content{
