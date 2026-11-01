@@ -108,6 +108,11 @@ footer p{color:var(--muted);margin:6px auto 0}
     <h2>Overview</h2>
     <p>Policies in HR, compliance, insurance and IT security are long and dense, and people often skim them and miss deadlines, exceptions and obligations. This agent turns a policy into a short summary a reader can act on.</p>
     <p>It accepts three kinds of input, which is what makes it useful across domains: a PDF, a plain text file, or the address of a policy page on the web. An optional focus topic, such as “maternity leave” or “data retention,” tells the model what to pay special attention to.</p>
+ <a href="Policy Summarizer Project Write-Up.pdf"
+target="_blank"
+class="btn btn-secondary">
+Download Project Write-Up
+</a>
   </section>
 
   <section id="how-it-works">
@@ -158,7 +163,6 @@ footer p{color:var(--muted);margin:6px auto 0}
       <li><strong>Long documents.</strong> Split very long policies into chunks, summarize each, then combine the results.</li>
       <li><strong>Scanned PDFs.</strong> These have no text layer, so they need OCR before summarizing.</li>
       <li><strong>Citations.</strong> Return page or section references so a reader can verify each point quickly.</li>
-      <li><strong>Secrets.</strong> Keep the API key out of the notebook by loading it from Colab Secrets or an environment variable.</li>
     </ul>
     <p style="margin-top:26px"><a class="btn" href="index.html#ai-agent">Back to portfolio</a></p>
   </section>
