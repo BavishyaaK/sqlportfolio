@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policy Summarizer AI Agent | Bavishyaa K</title>
+<meta name="description" content="Project write-up: a Python AI agent that summarizes policy documents with the Gemini API, with code walkthrough and evaluation.">
+<meta name="theme-color" content="#141414">
+<link rel="icon" href="kb-favicon.svg" type="image/svg+xml">
+<!--
+  Files expected next to this page:
+  kb-logo.svg, kb-favicon.svg, agent-code-1.png, agent-code-2.png,
+  agent-eval-rouge.png, agent-eval-similarity.png, index.html, loan-onboarding.html, Resumegit.docx
+-->
+<style>
+:root{--bg:#141414;--panel:#1f1f1f;--line:#333;--red:#e50914;--text:#f5f5f5;--muted:#b8b8b8;--nav:68px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 12px)}
+body{background:var(--bg);color:var(--text);line-height:1.65;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* Navigation (works without JavaScript) */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav);display:flex;justify-content:space-between;align-items:center;padding:0 60px;background:rgba(20,20,20,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+.logo{display:flex;align-items:center}
+.logo img{display:block;height:40px;width:auto}
+.nav-links{display:flex;gap:28px}
+.nav-links a{text-decoration:none;font-size:.95rem;padding:6px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--red);border-bottom-color:var(--red)}
+.nav-check{position:absolute;opacity:0;pointer-events:none}
+.nav-toggle{display:none;cursor:pointer;padding:10px}
+.nav-toggle span{display:block;width:24px;height:2px;margin:5px 0;background:#fff;transition:transform .3s,opacity .3s}
+.nav-check:focus-visible + .nav-toggle{outline:2px solid var(--red);outline-offset:3px}
+
+/* Page */
+main{max-width:1000px;margin:0 auto;padding:calc(var(--nav) + 56px) 40px 20px}
+.crumb{font-size:.9rem;color:var(--muted);margin-bottom:18px}
+.crumb a{text-decoration:none}.crumb a:hover{color:var(--red)}
+h1{font-size:3rem;line-height:1.12;color:var(--red);margin-bottom:14px}
+.lead{font-size:1.15rem;color:var(--muted);max-width:62ch;margin-bottom:20px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.chip{background:#2a2a2a;border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:.85rem}
+section{margin-top:64px}
+h2{font-size:1.8rem;margin-bottom:14px}
+h2::after{content:"";display:block;width:48px;height:3px;background:var(--red);margin-top:8px}
+p{color:#ddd;max-width:70ch;margin-bottom:14px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:8px}
+.step{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--red);border-radius:8px;padding:18px}
+.step b{display:block;color:var(--red);font-size:1.5rem;line-height:1;margin-bottom:8px}
+.step h3{font-size:1.05rem;margin-bottom:6px}
+.step p{font-size:.95rem;color:var(--muted);margin:0}
+figure{margin:26px 0 8px}
+figure a{display:block}
+figure img{display:block;width:100%;max-width:920px;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+figcaption{margin-top:10px;font-size:.92rem;color:var(--muted);max-width:70ch}
+ul.notes{margin:6px 0 0 20px;color:#ddd;max-width:70ch}
+ul.notes li{margin-bottom:8px}
+.btn{display:inline-block;background:var(--red);color:#fff;padding:12px 30px;border:2px solid var(--red);border-radius:4px;font-weight:700;text-decoration:none;transition:background .2s}
+.btn:hover{background:#b8070f;border-color:#b8070f}
+footer{text-align:center;padding:36px 20px;background:#000;margin-top:70px}
+footer h3{color:var(--red);margin-bottom:6px}
+footer p{color:var(--muted);margin:6px auto 0}
+
+@media (max-width:768px){
+  .navbar{padding:0 20px}
+  .logo img{height:32px}
+  .nav-toggle{display:block}
+  .nav-links{position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-top:1px solid rgba(255,255,255,.08);max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .nav-links a{padding:16px 24px;font-size:1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav-links a:hover,.nav-links a.active{background:rgba(229,9,20,.08);border-bottom-color:rgba(255,255,255,.06)}
+  .nav-check:checked ~ .nav-links{max-height:380px}
+  .nav-check:checked + .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-check:checked + .nav-toggle span:nth-child(2){opacity:0}
+  .nav-check:checked + .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  main{padding:calc(var(--nav) + 32px) 20px 10px}
+  h1{font-size:2.1rem}
+  h2{font-size:1.5rem}
+  section{margin-top:48px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="logo" href="index.html#top" aria-label="KB, back to home"><img src="kb-logo.svg" alt="KB"></a>
+  <input type="checkbox" id="nav-check" class="nav-check" aria-label="Toggle menu">
+  <label for="nav-check" class="nav-toggle" aria-hidden="true"><span></span><span></span><span></span></label>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html#projects">Projects</a>
+    <a href="ai-agent.html" class="active">My AI Agent</a>
+    <a href="loan-onboarding.html">BA Project</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="Resumegit.docx" target="_blank" rel="noopener">Resume</a>
+  </div>
+</nav>
+
+<main>
+  <p class="crumb"><a href="index.html#ai-agent">Portfolio</a> / Project write-up</p>
+  <h1>Policy Summarizer: AI Agent</h1>
+  <p class="lead">A Python agent that reads a policy document, from a PDF, a text file or a web page, and returns a summary focused on what the reader needs. Built in Google Colab with the Gemini API.</p>
+  <div class="chips">
+    <span class="chip">Python</span><span class="chip">Gemini API (google-genai)</span><span class="chip">pypdf</span>
+    <span class="chip">requests</span><span class="chip">ROUGE</span><span class="chip">Embeddings</span><span class="chip">Google Colab</span>
+  </div>
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>Policies in HR, compliance, insurance and IT security are long and dense, and people often skim them and miss deadlines, exceptions and obligations. This agent turns a policy into a short summary a reader can act on.</p>
+    <p>It accepts three kinds of input, which is what makes it useful across domains: a PDF, a plain text file, or the address of a policy page on the web. An optional focus topic, such as “maternity leave” or “data retention,” tells the model what to pay special attention to.</p>
+  </section>
+
+  <section id="how-it-works">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step"><b>1</b><h3>Read</h3><p>PDF pages are read with pypdf, text files are opened as UTF-8, and web pages are downloaded with requests.</p></div>
+      <div class="step"><b>2</b><h3>Clean</h3><p>For web pages, scripts, styles and HTML tags are removed and the whitespace is collapsed into plain text.</p></div>
+      <div class="step"><b>3</b><h3>Summarize</h3><p>The text goes to a Gemini model with an instruction to summarize the policy, plus an optional line asking for special attention to the focus topic.</p></div>
+      <div class="step"><b>4</b><h3>Evaluate</h3><p>The summary is scored against a reference summary with ROUGE, and against the source with embedding similarity.</p></div>
+    </div>
+  </section>
+
+  <section id="code">
+    <h2>The code</h2>
+    <p>The agent lives in a single module, <code>summarizer.py</code>, written from a Colab notebook cell. The API key is hidden in the screenshot below for publication.</p>
+
+    <figure>
+      <a href="agent-code-1.png" target="_blank" rel="noopener"><img src="agent-code-1.png" width="1032" height="776" alt="Colab code for summarizer.py showing the imports, the Gemini client, read_document for PDF and text files, and the start of read_webpage"></a>
+      <figcaption><strong>Setup and readers.</strong> The Gemini client is created with the google-genai SDK. <code>read_document</code> handles PDF and text files. <code>read_webpage</code> downloads a page with a browser-style User-Agent header and raises an error if the request fails.</figcaption>
+    </figure>
+
+    <figure>
+      <a href="agent-code-2.png" target="_blank" rel="noopener"><img src="agent-code-2.png" width="1032" height="726" alt="Colab code showing HTML cleaning with regular expressions and the summarize function that builds the prompt and calls the Gemini model"></a>
+      <figcaption><strong>Cleaning and summarizing.</strong> Regular expressions strip script blocks, style blocks and tags from web pages. <code>summarize</code> builds the prompt, appends the focus line when one is given, and calls the model.</figcaption>
+    </figure>
+  </section>
+
+  <section id="evaluation">
+    <h2>Evaluation</h2>
+    <p>A summary can sound right and still be wrong, so I added two automatic checks. They are quick signals, not proof of accuracy.</p>
+
+    <figure>
+      <a href="agent-eval-rouge.png" target="_blank" rel="noopener"><img src="agent-eval-rouge.png" width="920" height="182" alt="Colab cell computing a ROUGE score between a reference summary and the generated summary"></a>
+      <figcaption><strong>ROUGE.</strong> Compares the generated summary with a human-written reference summary by word overlap. It is a cheap check to run after every prompt change, but it cannot tell whether a number or a deadline is correct.</figcaption>
+    </figure>
+
+    <figure>
+      <a href="agent-eval-similarity.png" target="_blank" rel="noopener"><img src="agent-eval-similarity.png" width="920" height="182" alt="Colab cell computing cosine similarity between the source embedding and the summary embedding"></a>
+      <figcaption><strong>Embedding similarity.</strong> Compares the meaning of the source document with the meaning of the summary using cosine similarity of their embeddings. A high score suggests the summary stays on topic, but it does not prove that every fact is right.</figcaption>
+    </figure>
+  </section>
+
+  <section id="next">
+    <h2>Limits and next steps</h2>
+    <ul class="notes">
+      <li><strong>Test set.</strong> Score a set of policies from several domains, each with a reference summary, so the results are comparable over time.</li>
+      <li><strong>Faithfulness and coverage.</strong> Add a check that every claim is supported by the source, a checklist of key facts per policy (deadlines, penalties, exceptions), and a script that confirms dates and amounts in the summary appear in the source.</li>
+      <li><strong>Long documents.</strong> Split very long policies into chunks, summarize each, then combine the results.</li>
+      <li><strong>Scanned PDFs.</strong> These have no text layer, so they need OCR before summarizing.</li>
+      <li><strong>Citations.</strong> Return page or section references so a reader can verify each point quickly.</li>
+      <li><strong>Secrets.</strong> Keep the API key out of the notebook by loading it from Colab Secrets or an environment variable.</li>
+    </ul>
+    <p style="margin-top:26px"><a class="btn" href="index.html#ai-agent">Back to portfolio</a></p>
+  </section>
+</main>
+
+<footer>
+  <h3>BAVISHYAA</h3>
+  <p>Email: <a href="mailto:balameenabk@protonmail.com">balameenabk@protonmail.com</a> &middot; <a href="https://github.com/BavishyaaK" target="_blank" rel="noopener">GitHub</a></p>
+</footer>
+
+</body>
+</html>
