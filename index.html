@@ -62,7 +62,12 @@ a{color:inherit}
 .hero-figure{margin:0}
 .hero-figure img{
   display:block; width:100%; height:auto; border-radius:8px;
-  border:1px solid var(--line); box-shadow:0 0 40px rgba(229,9,20,.2);
+  border:1px solid var(--line); box-shadow:
+    0 0 30px rgba(113,201,255,.25),
+    0 0 80px rgba(113,201,255,.18);
+
+  border:1px solid
+    rgba(180,230,255,.3);
 }
 .hero-figure figcaption{margin-top:10px;font-size:.9rem;color:var(--muted);text-align:center}
 
@@ -161,6 +166,45 @@ footer p{color:var(--muted);margin-top:6px}
 }
 </style>
 </head>
+  <script>
+
+for(let i=0;i<80;i++){
+
+  const star=document.createElement("div");
+
+  star.style.position="fixed";
+  star.style.width="2px";
+  star.style.height="2px";
+  star.style.borderRadius="50%";
+
+  star.style.background="#dff6ff";
+
+  star.style.left=Math.random()*100+"vw";
+  star.style.top=Math.random()*100+"vh";
+
+  star.style.opacity=Math.random();
+
+  star.style.boxShadow=
+  "0 0 10px #99e5ff";
+
+  star.style.pointerEvents="none";
+
+  star.style.zIndex="-1";
+
+  star.animate(
+  [
+   {transform:"translateY(0px)"},
+   {transform:"translateY(-50px)"}
+  ],
+  {
+    duration:4000 + Math.random()*6000,
+    direction:"alternate",
+    iterations:Infinity
+  });
+
+  document.body.appendChild(star);
+}
+</script>
 <body>
 
 <nav class="navbar">
