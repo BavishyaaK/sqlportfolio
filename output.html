@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bloom Intelligence Dashboard</title>
+
+<style>
+:root{
+--bloom-blue:#6ea8ff;
+--fairy-pink:#ff8bd1;
+--magic-purple:#8b5cf6;
+--glass:rgba(255,255,255,.08);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top,
+#7ea8ff 0%,
+#2d3975 40%,
+#0e132e 100%);
+color:white;
+min-height:100vh;
+padding:30px;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+font-size:3rem;
+text-shadow:0 0 20px #7ea8ff;
+}
+
+.dashboard{
+max-width:1400px;
+margin:auto;
+display:grid;
+grid-template-columns:
+1fr 1fr;
+gap:25px;
+}
+
+.card{
+background:var(--glass);
+backdrop-filter:blur(15px);
+border-radius:25px;
+padding:25px;
+border:1px solid rgba(255,255,255,.15);
+box-shadow:0 0 35px rgba(110,168,255,.2);
+}
+
+.card h2{
+margin-bottom:20px;
+color:#ffd7f5;
+}
+
+.metric{
+display:flex;
+justify-content:space-between;
+padding:12px;
+margin:10px 0;
+background:rgba(255,255,255,.06);
+border-radius:12px;
+}
+
+.metric span{
+font-weight:bold;
+}
+
+.chart{
+height:250px;
+display:flex;
+align-items:flex-end;
+justify-content:space-evenly;
+margin-top:20px;
+}
+
+.bar{
+width:60px;
+border-radius:12px 12px 0 0;
+position:relative;
+}
+
+.bar label{
+position:absolute;
+bottom:-28px;
+width:100%;
+text-align:center;
+font-size:.8rem;
+}
+
+.bar1{
+height:140px;
+background:#22c55e;
+}
+
+.bar2{
+height:210px;
+background:#f97316;
+}
+
+.bar3{
+height:100px;
+background:#60a5fa;
+}
+
+.network{
+height:350px;
+position:relative;
+}
+
+.node{
+position:absolute;
+width:18px;
+height:18px;
+border-radius:50%;
+animation:pulse 2s infinite;
+}
+
+.real{
+background:#86efac;
+}
+
+.bot{
+background:#ef4444;
+}
+
+.line{
+position:absolute;
+height:2px;
+background:rgba(255,255,255,.3);
+transform-origin:left center;
+}
+
+@keyframes pulse{
+50%{
+transform:scale(1.4);
+}
+}
+
+.report{
+grid-column:1/3;
+text-align:center;
+}
+
+.score{
+width:250px;
+height:250px;
+margin:auto;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:4rem;
+font-weight:bold;
+background:
+conic-gradient(
+#60a5fa 0deg 285deg,
+rgba(255,255,255,.12) 285deg
+);
+box-shadow:
+0 0 50px rgba(96,165,250,.5);
+}
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.stat{
+padding:20px;
+border-radius:18px;
+background:rgba(255,255,255,.05);
+}
+
+.value{
+font-size:2rem;
+margin-top:10px;
+font-weight:bold;
+}
+
+.green{
+color:#86efac;
+}
+
+.red{
+color:#f87171;
+}
+
+.pink{
+color:#ffd7f5;
+}
+</style>
+</head>
+
+<body>
+
+<h1>✨ Bloom Intelligence Dashboard ✨</h1>
+
+<div class="dashboard">
+
+<!-- Engagement Analysis -->
+
+<div class="card">
+
+<h2>📈 Engagement Analysis</h2>
+
+<div class="metric">
+<p>Expected Likes</p>
+<span>12,000</span>
+</div>
+
+<div class="metric">
+<p>Actual Likes</p>
+<span>18,500</span>
+</div>
+
+<div class="metric">
+<p>Excess Likes</p>
+<span style="color:#f87171;">6,500</span>
+</div>
+
+<div class="chart">
+
+<div class="bar bar1">
+<label>Expected</label>
+</div>
+
+<div class="bar bar2">
+<label>Actual</label>
+</div>
+
+<div class="bar bar3">
+<label>Comments</label>
+</div>
+
+</div>
+
+</div>
+
+<!-- Bot Network -->
+
+<div class="card">
+
+<h2>🕸️ Bot Network Detection</h2>
+
+<div class="network">
+
+<div class="node bot" style="top:60px;left:180px;"></div>
+<div class="node bot" style="top:100px;left:250px;"></div>
+<div class="node bot" style="top:160px;left:220px;"></div>
+<div class="node bot" style="top:210px;left:300px;"></div>
+<div class="node bot" style="top:130px;left:350px;"></div>
+
+<div class="node real" style="top:40px;left:70px;"></div>
+<div class="node real" style="top:180px;left:90px;"></div>
+<div class="node real" style="top:250px;left:180px;"></div>
+<div class="node real" style="top:280px;left:330px;"></div>
+
+<svg width="100%" height="100%">
+<line x1="190" y1="70" x2="260" y2="110"
+stroke="rgba(255,255,255,.4)" />
+
+<line x1="260" y1="110" x2="230" y2="170"
+stroke="rgba(255,255,255,.4)" />
+
+<line x1="230" y1="170" x2="310" y2="220"
+stroke="rgba(255,255,255,.4)" />
+
+<line x1="230" y1="170" x2="360" y2="140"
+stroke="rgba(255,255,255,.4)" />
+</svg>
+
+</div>
+
+<div class="metric">
+<p>Detected Bot Cluster</p>
+<span style="color:#f87171;">
+5,274 Accounts
+</span>
+</div>
+
+<div class="metric">
+<p>Similarity Score</p>
+<span>92%</span>
+</div>
+
+</div>
+
+<!-- Final Report -->
+
+<div class="card report">
+
+<h2>💎 Authenticity Crystal Report</h2>
+
+<br>
+
+<div class="score">
+79
+</div>
+
+<h2 style="margin-top:20px;">
+79 / 100
+</h2>
+
+<div class="grid">
+
+<div class="stat">
+<h3 class="green">
+✅ Human Followers
+</h3>
+<div class="value green">
+198,520
+</div>
+</div>
+
+<div class="stat">
+<h3 class="red">
+🚨 Bot Followers
+</h3>
+<div class="value red">
+51,480
+</div>
+</div>
+
+<div class="stat">
+<h3>
+🌟 Real Reach
+</h3>
+<div class="value">
+79.4%
+</div>
+</div>
+
+<div class="stat">
+<h3>
+⚠ Artificial Reach
+</h3>
+<div class="value">
+20.6%
+</div>
+</div>
+
+<div class="stat">
+<h3 class="pink">
+📝 Comment Authenticity
+</h3>
+<div class="value pink">
+81%
+</div>
+</div>
+
+<div class="stat">
+<h3>
+🔥 Risk Level
+</h3>
+<div class="value">
+MEDIUM
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
