@@ -1,0 +1,131 @@
+from collections import Counter
+import re
+
+class BotDetector:
+
+    GENERIC_COMMENTS = [
+        "link"
+        "nice post",
+        "great content",
+        "amazing",
+        "awesome",
+        "keep growing",
+        "nice video"
+    ]
+
+    def comment_score(self, comments):
+        suspicious = 0
+
+        for comment in comments:
+            text = comment.lower()
+
+            if any(x in text for x in self.GENERIC_COMMENTS):
+                suspicious += 1
+
+            if len(text.split()) <= 2:
+                suspicious += 1
+
+            if len(re.findall(r'[🔥❤️😍]', text)) > 3:
+                suspicious += 1
+
+        risk = (suspicious / max(len(comments), 1)) * 100
+
+        return round(risk, 2)
+
+    def follower_score(self, followers):
+
+        suspicious = 0
+
+        for user in followers:
+
+            username = user["username"]
+
+            if sum(c.isdigit() for c in username) > 4:
+                suspicious += 1
+
+            if user["posts"] == 0:
+                suspicious += 1
+
+        return round(
+            suspicious / max(len(followers), 1) * 100,
+            2
+        )
+
+    def engagement_score(
+        self,
+        followers,
+        likes,
+        comments
+    ):
+
+        rate = (
+            likes + comments
+        ) / followers * 100
+
+        if rate > 20:
+            return 80
+
+        if rate > 10:
+            return 50
+
+        return 10
+
+    def analyze(
+        self,
+        followers,
+        likes,
+        comments_count,
+        comments,
+        follower_profiles
+    ):
+
+        comment_risk = self.comment_score(comments)
+        follower_risk = self.follower_score(
+            follower_profiles
+        )
+        engagement_risk = self.engagement_score(
+            followers,
+            likes,
+            comments_count
+        )
+
+        final_risk = round(
+            (
+                comment_risk +
+                follower_risk +
+                engagement_risk
+            ) / 3,
+            2
+        )
+
+        return {
+            "risk_score": final_risk,
+            "comment_risk": comment_risk,
+            "follower_risk": follower_risk,
+            "engagement_risk": engagement_risk,
+            "authenticity_score": round(
+                100 - final_risk,
+                2
+            )
+        }
+
+from fastapi import FastAPI
+from detector import BotDetector
+
+app = FastAPI()
+
+detector = BotDetector()
+
+@app.post("/analyze")
+
+def analyze(data: dict):
+
+    report = detector.analyze(
+        followers=data["followers"],
+        likes=data["likes"],
+        comments_count=data["comments_count"],
+        comments=data["comments"],
+        follower_profiles=data["follower_profiles"]
+    )
+
+    return report
